@@ -1,6 +1,6 @@
 #pragma once
 
-#include "objects.hpp"
+#include "../physics/objects.hpp"
 
 // ========== Rendering ==========
 

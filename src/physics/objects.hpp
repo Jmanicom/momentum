@@ -1,6 +1,6 @@
 #pragma once
 
-#include "config.hpp"
+#include "../util/config.hpp"
 
 // ========== Physics ==========
 
@@ -23,6 +23,14 @@ struct Object
         Circle circle;
         Rect rect;
     };
+};
+
+struct Manifold
+{
+    Object* A;
+    Object* B;
+    float penetration;
+    Vec2f normal;
 };
 
 Object MTMCircle(const Vec2f& pos, float mass, float radius, float rest = 0.6f)

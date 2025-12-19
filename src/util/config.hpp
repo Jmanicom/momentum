@@ -12,9 +12,11 @@ const double pi = 3.14159265359;
 
 
 // Window Settings Config
-const char* winName = "Momentum2D";
-const Vec2i winSize = {800, 600};
-bool gravityEnabled = true;
+const char* winName = "Momentum2D";    // Window Name as a pointer to a char array
+const Vec2i winSize = {800, 600};      // Window size
+const float fps = 144;                 // Window frames per second
+const float dt = 1 / fps;              // Time-step
+float accumalator = 0;
 
 
 // ========= OpenGL window based functions ===========
@@ -47,17 +49,9 @@ inline int MTMwin(GLFWwindow*& window, Vec2i winSize)
 }
 
 // Boiler plate start frame func for momentum
-float MTMstartframe(float& previousTime) {
-    float currentTime = glfwGetTime();
-    float dt = currentTime - previousTime;
-    previousTime = currentTime;
-        if (dt > 0.25f)
-            dt = 0.25f;
-
+void MTMstartframe() {
     glClearColor(0.12f, 0.12f, 0.18f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-
-    return dt;
 }
 
 // Boiler plate end frame func for momentum

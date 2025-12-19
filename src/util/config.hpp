@@ -14,7 +14,7 @@ const double pi = 3.14159265359;
 // Window Settings Config
 const char* winName = "Momentum2D";    // Window Name as a pointer to a char array
 const Vec2i winSize = {800, 600};      // Window size
-const float fps = 144;                 // Window frames per second
+const float fps = 60;                 // Window frames per second
 const float dt = 1 / fps;              // Time-step
 float accumalator = 0;
 

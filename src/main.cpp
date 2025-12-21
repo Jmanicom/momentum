@@ -22,7 +22,7 @@ int main()
     
     sim.MtmAdd(MTMCircle({0.0f, 0.5f}, 10.0f, 0.1f));
     sim.MtmAdd(MTMCircle({0.0f, 1.0f}, 10.0f, 0.1f));
-    sim.MtmAdd(MTMRect({0.5f, 0.5f}, 10.0f, {0.05f, 0.05f}));
+    sim.MtmAdd(MTMRect({0.5f, 0.5f}, 10.0f, {0.1f, 0.1f}));
 
     // In units of seconds
     float frameStart = glfwGetTime();
@@ -38,12 +38,11 @@ int main()
         frameStart = currentTime;
         if (accumalator > 0.2f)
             accumalator = 0.2f; // Clamp value to avoid rendering issues
-        while (accumalator > dt)
+        while (accumalator >= dt) {
+            sim.step(dt);
             accumalator -= dt;
+        }
 
-
-        // +++++ Updating physics and rendering the objects +++++
-        sim.step(dt);
         Render(sim.Objects());
         
         // Run boilerplate end frame func

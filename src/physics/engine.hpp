@@ -18,16 +18,15 @@ public:
         for (Object& obj : objs) {
             if (obj.invMass == 0.0f) continue;
 
-            obj.force += gravity / obj.invMass;  // Apply a gravitational force to the obj
+            obj.force += gravity / obj.invMass;  // Apply a gravitational force to the obj F = ma
 
             Vec2f accel = obj.force * obj.invMass;
             obj.velocity += accel * dt;
-            obj.position += obj.velocity * dt;
 
             obj.force = Vec2f(0.0f, 0.0f);     // Reset net force at the end
         }
 
-        const int solverIters = 20;
+        const int solverIters = 2;
         for (int k = 0; k < solverIters; ++k)
         {
             for (size_t i = 0; i < objs.size(); ++i) {
@@ -47,8 +46,10 @@ public:
             }
         }
 
-        for (Object& obj : objs)
+        for (Object& obj : objs) {
+            obj.position += obj.velocity * dt;
             MTMWrldBounds(obj);
+        }
     }
 
     const std::vector<Object>& Objects() const { return objs; }

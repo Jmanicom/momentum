@@ -40,7 +40,7 @@ Object MTMCircle(const Vec2f& pos, float mass, float radius, float rest = 0.6f)
     o.velocity = {0.0f, 0.0f};
     o.force = {0.0f, 0.0f};
 
-    o.invMass = mass;
+    o.invMass = 1.0f / mass;
     o.restitution = rest;
 
     o.shape = ShapeType::Circle;
@@ -56,7 +56,7 @@ Object MTMRect(const Vec2f& pos, float mass, Vec2f halfDim, float rest = 0.6f)
     o.velocity = {0.0f, 0.0f};
     o.force = {0.0f, 0.0f};
 
-    o.invMass = mass;
+    o.invMass = 1.0f / mass;
     o.restitution = rest;
 
     o.shape = ShapeType::Rect;
